@@ -1,22 +1,14 @@
 require_relative "../json_service/json_input"
-require "date"
 require "pry"
 
 class RentalPrice < JsonInput
 
-  def dates_to_days(start_date, end_date)
-    start_date = Date.parse(start_date)
-    end_date = Date.parse(end_date)
-
-    (end_date - start_date).to_i + 1
-  end 
-
   def total_rental_price(rental, include_discount)
     if include_discount
-      nb_days = dates_to_days(rental["start_date"], rental["end_date"])
-      price_per_day = get_car(rental["car_id"])["price_per_day"]
+      nb_days = rental.dates_to_days
+      price_per_day = get_car(rental.car_id)["price_per_day"]
       case nb_days
-      when 0..1  then res =total_days_price(rental)
+      when 0..1  then res = total_days_price(rental)
       when 2..4  then res = total_price_with_10_pcrt_discount(nb_days, price_per_day)
       when 5..10 then res = total_price_with_10_30_pcrt_discount(nb_days, price_per_day)
       else 
@@ -41,11 +33,11 @@ class RentalPrice < JsonInput
   end
 
   def total_days_price(rental)
-    dates_to_days(rental["start_date"], rental["end_date"]) * get_car(rental["car_id"])["price_per_day"]
+    rental.dates_to_days * get_car(rental.car_id)["price_per_day"]
   end
 
   def total_km_price(rental)
-    (rental["distance"] *  get_car(rental["car_id"])["price_per_km"]).to_i
+    (rental.distance *  get_car(rental.car_id)["price_per_km"]).to_i
   end
 
 end

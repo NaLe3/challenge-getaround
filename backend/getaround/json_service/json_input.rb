@@ -11,7 +11,7 @@ class JsonInput
     @json_input["cars"]
   end
 
-  def rentals
+  def json_rentals
     @json_input["rentals"]
   end
 

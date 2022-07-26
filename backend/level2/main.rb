@@ -1,6 +1,10 @@
 require_relative "../getaround/json_service/json_output"
 
-output_json = JsonOutput.new("./data/input.json").json_output(include_discount: true)
+HASHES_TO_PASS = [
+  :price
+]
+
+output_json = JsonOutput.new("./data/input.json").json_output(HASHES_TO_PASS, include_discount: true)
 
 json_file_path = "data/output.json"
 
