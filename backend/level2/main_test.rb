@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require "json"
-require "./main"
 require "pry"
+require_relative "./main"
 
 class MainTest < Minitest::Test
   

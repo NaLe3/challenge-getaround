@@ -1,4 +1,4 @@
-require "../json_service/json_input.rb"
+require_relative "../json_service/json_input"
 require "date"
 require "pry"
 
@@ -13,7 +13,7 @@ class RentalPrice < JsonInput
 
   def total_rental_price(rental, include_discount)
     if include_discount
-      nb_days = dates_to_days(rental["start_date"], rental["end_date"]) 
+      nb_days = dates_to_days(rental["start_date"], rental["end_date"])
       price_per_day = get_car(rental["car_id"])["price_per_day"]
       case nb_days
       when 0..1  then res =total_days_price(rental)

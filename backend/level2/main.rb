@@ -1,4 +1,4 @@
-require "../json_service/json_output"
+require_relative "../getaround/json_service/json_output"
 
 output_json = JsonOutput.new("./data/input.json").json_output(include_discount: true)
 
