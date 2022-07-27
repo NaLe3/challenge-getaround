@@ -3,9 +3,11 @@ require "pry"
 
 class Commission 
 
-  OVERALL_COMMISSION = 0.3  # commission to apply on the rental price
-  INSURANCE_COMMISSION = 0.5 # percentage of the overall commission 
-  ROADSIDE_ASSISTANCE_COMMISSION = 100 # price in cent per day of rental 
+  COMMISSIONS = {
+    "overall": 0.3,  # commission to apply on the rental price
+    "insurance": 0.5, # percentage of the overall commission 
+    "roadside_assistance": 100, # price in cent per day of rental 
+  }
 
   def initialize(rental_price, rental_duration)
     @rental_price = rental_price
@@ -13,19 +15,30 @@ class Commission
   end
 
   def overall_rental
-    (OVERALL_COMMISSION * @rental_price).to_i
+    (COMMISSIONS[:overall] * @rental_price).to_i
   end
 
   def insurance
-    (overall_rental * INSURANCE_COMMISSION).to_i
+    (overall_rental * COMMISSIONS[:insurance]).to_i
   end
 
   def roadside_assistance
-    (ROADSIDE_ASSISTANCE_COMMISSION * @rental_duration).to_i
+    (COMMISSIONS[:roadside_assistance] * @rental_duration).to_i
   end
 
   def getaround
     overall_rental - insurance - roadside_assistance
   end
+
+  def hash_output
+    {
+      "commission": 
+      {
+        "insurance_fee": insurance,
+        "assistance_fee": roadside_assistance,
+        "drivy_fee": getaround
+      }
+    }
+  end 
 
 end 

@@ -4,7 +4,7 @@ HASHES_TO_PASS = [
   :action
 ]
 
-output_json = JsonOutput.new("./data/input.json").json_output(HASHES_TO_PASS, include_discount: true, include_action: true)
+output_json = JsonOutput.new("./data/input.json").json_output(HASHES_TO_PASS, include_discount: true)
 
 json_file_path = "data/output.json"
 

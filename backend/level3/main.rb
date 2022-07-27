@@ -5,7 +5,7 @@ HASHES_TO_PASS = [
   :commission
 ]
 
-output_json = JsonOutput.new("./data/input.json").json_output(HASHES_TO_PASS, include_discount: true, include_commission: true)
+output_json = JsonOutput.new("./data/input.json").json_output(HASHES_TO_PASS, include_discount: true)
 
 json_file_path = "data/output.json"
 

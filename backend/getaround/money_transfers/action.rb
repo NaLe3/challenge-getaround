@@ -1,26 +1,29 @@
-require_relative "../rentals/rental_price"
+
+require_relative "../rentals/option"
 require "pry"
 
 class MoneyAction
 
-  def initialize(rental_price, commission)
+  def initialize(rental, rental_price, commission, options_hash)
+    @rental = rental
     @rental_price = rental_price
     @commission = commission
+    @options = Option.new(rental, options_hash)
   end
 
   def hash_output
     res = []
-
     res << driver << owner << insurance << assistance << getaround
   end
 
   private
+
   
   def driver
     {
       "who": "driver",
       "type": "debit",
-      "amount": @rental_price
+      "amount": @rental_price + @options.amount_for_owner + @options.amount_for_getaround
     }
   end
 
@@ -28,7 +31,7 @@ class MoneyAction
     {
       "who": "owner",
       "type": "credit",
-      "amount": @rental_price - @commission.overall_rental
+      "amount": @rental_price - @commission.overall_rental + @options.amount_for_owner
     }
   end
 
@@ -52,8 +55,8 @@ class MoneyAction
     {
       "who": "drivy",
       "type": "credit",
-      "amount": @commission.getaround
+      "amount": @commission.getaround + @options.amount_for_getaround
     }
   end
-   
+
 end 

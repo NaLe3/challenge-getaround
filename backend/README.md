@@ -1,41 +1,25 @@
-# Getaround EU Backend Challenge (previously Drivy)
+# Getaround Backend Challenge 
 
-Looking for a job? Check out our [open positions](https://uk.getaround.com.com/jobs).
-You can also take a look at our [engineering blog](https://drivy.engineering/) to learn more about the way we work.
+This challenge has been solved for Getaround job application. Please refer to [Getaround EU Backend Challenge (previously Drivy)](https://github.com/drivy/jobs/tree/master/backend) for more informations on the challenge
 
-## Guidelines
+### Requirements before reviewing the code 
+- run `gem install json` to load the JSON file 
+- run `gem install minitest` to run test
 
-**For each level, write code that creates a new `data/output.json` file from the data in `data/input.json`.
-An `expected_output.json` file is available to give you a reference on what result is expected.**
+### Guidelines
 
-- Clone this repo (do **not** fork it)
-- Solve the levels in ascending order
-- Only do one commit per level and include the `.git` when submiting your test
+For each level, to generate the `output.json` file, run `ruby main.rb` inside the level folder
 
-## Pointers
+### Test (Minitest)
 
-You can have a look at the higher levels, but please do the simplest thing that could work for the level you're currently solving.
+in each level folder, you may run the test `ruby main_test.rb`. The test ensure that the output equal the `expected_output.json`
 
-The levels become more complex over time, so you will probably have to re-use some code and adapt it to the new requirements.
-A good way to solve this is by using OOP, adding new layers of abstraction when they become necessary and possibly write tests so you don't break what you have already done.
+### Code explanation
 
-Don't hesitate to write [shameless code](http://red-badger.com/blog/2014/08/20/i-spent-3-days-with-sandi-metz-heres-what-i-learned/) at first, and then refactor it in the next levels.
+Inside the `getaround/json_service` directory, the `json_input.rb` receives the `data/input.json` file from each level. The `json_output.rb` will generate the `output.json` in each `data` folder of each level.
 
-For higher levels we are interested in seeing code that is clean, extensible and robust, so don't overlook edge cases, use exceptions where needed, ...
+As stated in the "Guidelines" above, an instance of `JsonOutput` is created in each `main.rb` 
 
-Please also note that:
 
-- All prices are stored as integers (in cents)
-- Running `$ ruby main.rb` from the level folder must generate the desired output, but of course feel free to add more files if needed.
 
-## Sending Your Results
 
-Once you are done, please send your results to someone from Getaround.
-
-- If you are already in discussion with us, send it directly to the person you are talking to.
-- If not, use the application form [on every job listing](https://en.drivy.com/jobs).
-
-You can send your Github project link or zip your directory and send it via email.
-If you do not use Github, don't forget to attach your `.git` folder.
-
-Good luck!
